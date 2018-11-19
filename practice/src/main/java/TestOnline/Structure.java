@@ -1,6 +1,6 @@
 package TestOnline;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by phandung on 5/29/17.
@@ -44,14 +44,34 @@ public class Structure<E> {
 
 
     public static void main(String[] args) {
-            ArrayList<String> strings = new ArrayList<String>();
-            strings.add("Hello, World!");
-            strings.add("Welcome to CoderPad.");
-            strings.add("This pad is running Java 8.");
+        int[] data =  {1 };
+        int[] result = sortSearch(data,4);
+        for (int i = 0 ; i < result.length ; i ++){
+            System.out.println(" CHeck "+result[i]);
+        }
 
-            for (String string : strings) {
-                System.out.println(string);
-            }
     }
+
+    private static Set<Integer> getSetInt(int[] data ){
+        Arrays.sort(data);
+        Set<Integer> setInt = new TreeSet<>();
+        for(int i = 0 ; i < data.length ; i++) {
+            setInt.add(data[i]);
+        }
+        return setInt;
+    }
+
+    public static int[] sortSearch(int[] data , int lessthan){
+        Set<Integer> setInteget = getSetInt(data);
+        List<Integer> result = new ArrayList<>();
+        setInteget.forEach(i ->{
+            if(i< lessthan){
+                result.add(i);
+            }
+        });
+        Collections.reverse(result);
+        return result.stream().mapToInt(i->i).toArray();
+    }
+
 }
 
